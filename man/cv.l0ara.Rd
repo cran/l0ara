@@ -13,9 +13,9 @@ cv.l0ara(x, y, family, lam, measure, nfolds, maxit, eps, seed)
 
 \item{family}{Response type as in \code{l0ara}.}
 
-\item{lam}{A user supplied \code{lambda} sequence in descending or asecending order.}
+\item{lam}{A user supplied \code{lambda} sequence in descending or asecending order. This function does not fit models. To fit a model with given \code{lam} value, use \code{l0ara}.}
 
-\item{measure}{Loss function used for corss validation. \code{measurer="mse"} or \code{"mae"} for all models. \code{"measure"="class"} only for logsitic regression.}
+\item{measure}{Loss function used for corss validation. \code{measurer="mse"} or \code{"mae"} for all models. \code{"measure"="class"} or \code{"measure"="auc"} only for logsitic regression.}
 
 \item{nfolds}{Number of folds. Default value is 10. Smallest value is 3.}
 
@@ -28,12 +28,14 @@ cv.l0ara(x, y, family, lam, measure, nfolds, maxit, eps, seed)
 \value{
 An object with S3 class "cv.l0ara" containing:
  \item{cv.error}{The mean cross validated error for given lambda sequence}
+ \item{cv.std}{The estimates of standard error of \code{cv.error}}
  \item{lam.min}{The lambda gives min cv.error}
  \item{lambda}{The lambda used}
  \item{measure}{Type of measure}
  \item{family}{Model used}
  \item{x}{Design matrix}
  \item{y}{Response variable}
+ \item{name}{full name of the measure}
 }
 \description{
 Does k-fold cross-validation for l0ara, produces a plot, and returns the optimal \code{lambda}

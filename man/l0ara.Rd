@@ -13,7 +13,7 @@ l0ara(x, y, family, lam, maxit, eps)
 
 \item{family}{Response type(see above).}
 
-\item{lam}{A user supplied \code{lambda} value. Try use \code{cv.l0ara} first to select optimal tunning and then refit with \code{lam.min}.}
+\item{lam}{A user supplied \code{lambda} value. Try use \code{cv.l0ara} first to select optimal tunning and then refit with \code{lam.min} if you have a \code{lam} sequence. To use AIC, set \code{lam=2}; to use BIC, set \code{lam=log(n)}.}
 
 \item{maxit}{Maximum number of passes over the data for \code{lambda}. Default value is \code{1e3}.}
 
@@ -32,7 +32,7 @@ An object with S3 class "l0ara" containing:
 An adaptive ridge algorithm for feature selection with L0 penalty.
 }
 \details{
-The sequence of models indexed by the parameter lambda is fit using adptive ridge algorithm. The objective function for generalized linear models (including \code{family} above) is defined to be \deqn{-(log likelihood)+(\lambda/2)*|\beta|_0} This adaptive ridge algorithm is developed to approximate L0 penalized generalized linear models with sequential optimization and is efficient for high-dimensional data.
+The sequence of models indexed by the parameter lambda is fit using adptive ridge algorithm. The objective function for generalized linear models (including \code{family} above) is defined to be \deqn{-(log likelihood)+(\lambda/2)*|\beta|_0} \eqn{|\beta|_0} is the number of non-zero elements in \eqn{\beta}. To select the "best" model with AIC or BIC criterion, let \code{lambda} to be 2 or \code{log(n)}. This adaptive ridge algorithm is developed to approximate L0 penalized generalized linear models with sequential optimization and is efficient for high-dimensional data.
 }
 \examples{
 # Linear regression
@@ -43,8 +43,8 @@ x <- matrix(rnorm(n*p), n, p)
 beta <- c(1,0,2,3,rep(0,p-4))
 noise <- rnorm(n)
 y <- x\%*\%beta+noise
-# fit sparse linear regression
-res.gaussian <- l0ara(x, y, family="gaussian", 1)
+# fit sparse linear regression using BIC 
+res.gaussian <- l0ara(x, y, family="gaussian", log(n))
 
 # predict for new observations
 print(res.gaussian)
@@ -75,8 +75,8 @@ x <- matrix(rnorm(n*p), n, p)
 beta <- c(1,0,0.5,0.3,rep(0,p-4))
 mu <- exp(x\%*\%beta)
 y <- rpois(n, mu)
-# fit sparse Poisson regression
-res.pois <- l0ara(x, y, family="poisson", 0.7)
+# fit sparse Poisson regression using AIC
+res.pois <- l0ara(x, y, family="poisson", 2)
 
 # predict for new observations
 print(res.pois)
