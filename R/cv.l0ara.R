@@ -1,4 +1,4 @@
-#' Cross validation for l0ara
+#' cross-validation for l0ara
 #' @description Does k-fold cross-validation for l0ara, produces a plot, and returns the optimal \code{lambda}
 #' @usage  cv.l0ara(x, y, family, lam, measure, nfolds, maxit, eps, seed)
 #' @param x Input matrix as in \code{l0ara}.
@@ -20,10 +20,10 @@
 #'  \item{family}{Model used}
 #'  \item{x}{Design matrix}
 #'  \item{y}{Response variable}
-#'  \item{name}{full name of the measure}
+#'  \item{name}{Full name of the measure}
 #' @author
-#' Wenchuan Guo <wguo007@ucr.edu>, Zhenqiu Liu <Zhenqiu.Liu@cshs.org>
-#' @seealso \code{l0ara}.
+#' Wenchuan Guo <wguo007@ucr.edu>, Shujie Ma <shujie.ma@ucr.edu>, Zhenqiu Liu <Zhenqiu.Liu@cshs.org>
+#' @seealso \code{\link{l0ara}}, \code{\link{coef.cv.l0ara}}, \code{\link{plot.cv.l0ara}} methods.
 #' @examples
 #' #' # Linear regression
 #' # Generate design matrix and response variable

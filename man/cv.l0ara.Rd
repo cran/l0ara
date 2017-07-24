@@ -2,7 +2,7 @@
 % Please edit documentation in R/cv.l0ara.R
 \name{cv.l0ara}
 \alias{cv.l0ara}
-\title{Cross validation for l0ara}
+\title{cross-validation for l0ara}
 \usage{
 cv.l0ara(x, y, family, lam, measure, nfolds, maxit, eps, seed)
 }
@@ -35,7 +35,7 @@ An object with S3 class "cv.l0ara" containing:
  \item{family}{Model used}
  \item{x}{Design matrix}
  \item{y}{Response variable}
- \item{name}{full name of the measure}
+ \item{name}{Full name of the measure}
 }
 \description{
 Does k-fold cross-validation for l0ara, produces a plot, and returns the optimal \code{lambda}
@@ -55,10 +55,9 @@ y <- x\%*\%beta+noise
 lam <- c(0.1, 0.3, 0.5)
 fit <- cv.l0ara(x, y, family="gaussian", lam, measure = "mse")
 }
-\author{
-Wenchuan Guo <wguo007@ucr.edu>, Zhenqiu Liu <Zhenqiu.Liu@cshs.org>
-}
 \seealso{
-\code{l0ara}.
+\code{\link{l0ara}}, \code{\link{coef.cv.l0ara}}, \code{\link{plot.cv.l0ara}} methods.
 }
-
+\author{
+Wenchuan Guo <wguo007@ucr.edu>, Shujie Ma <shujie.ma@ucr.edu>, Zhenqiu Liu <Zhenqiu.Liu@cshs.org>
+}
