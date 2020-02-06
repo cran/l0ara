@@ -40,12 +40,12 @@
 cv.l0ara <- function(x, y, family = c("gaussian", "logit", "gamma", "poisson", "inv.gaussian"), lam, measure = c("mse", "mae","class", "auc"), nfolds = 10,  maxit = 10^3, eps = 1e-04, seed){
   measure <- match.arg(measure)
   # error checking
-  if (class(x) != "matrix") {
+  if (!is.matrix(x)) {
     tmp <- try(x <- model.matrix(~0 + ., data = x), silent = TRUE)
     if (class(tmp)[1] == "try-error")
       stop("x must be a matrix or able to be coerced to a matrix")
   }
-  if (class(y) != "numeric") {
+  if (!is.numeric(y)) {
     tmp <- try(y <- as.numeric(y), silent = TRUE)
     if (class(tmp)[1] == "try-error")
       stop("y must numeric or able to be coerced to numeric")
